@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block title %}
+Profile Edite
+{% endblock title %}
+
+
+
+{% block content %}
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+              <!-- general form elements -->
+              <div class="card card-primary mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Profile Update</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+
+
+
+
+                <form method="post" action = "{% url 'edite_my_profile'%}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                  <div class="card-body">
+
+                    {% if messages %}
+                    {{message.tags}}  
+                    <div class="alert alert-primary" role = 'alert'>
+                      {% for message in messages %}
+                      {{message}}
+                      {% endfor %}
+            
+                    </div>
+                    {% endif %}
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">First Name</label>
+                      <input required type="text" maxlength="50" value="{{user.first_name}}" name = "first_name" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Last Name</label>
+                        <input required type="text" maxlength="50" value="{{user.last_name}}" name = "last_name" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">User Name</label>
+                        <input required type="text" maxlength="25" value="{{user.username}}" name = "username" class="form-control" >
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mobile Number</label>
+                        <input required value="{{user.mobile}}" type="number" minlength="11" maxlength="11" name="mobile" class="form-control" >
+                    </div>
+
+
+
+                    <div class="form-group mt-3">
+                        <label for="exampleInputPassword1">Image</label>
+                        <input  type="file"  name="image" class="form-control" >
+                    </div>
+
+
+                  </div>
+                  <!-- /.card-body -->
+  
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                  </div>
+                </form>
+
+
+
+
+
+              </div>
+           
+  
+            </div>
+            
+    
+          </div>
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+
+
+{% endblock content %}

@@ -1,0 +1,60 @@
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="/" class="brand-link">
+      <img src="/static/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="/static/brand-text font-weight-light">E-Voting</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <a href="/view_my_profile/">
+        <div class="image">
+          {% if user.profile_pic %}
+          <img src="{{user.profile_pic.url}}" class="img-circle elevation-2" alt="User Image">
+          {% else %}
+          <img src="/static/nn/user.png" class="img-circle elevation-2" alt="User Image">
+          {% endif %}
+        </div>
+        </a>
+        <div class="info">
+          <a href="/view_my_profile/" class="d-block"><span>{{ user.first_name }}</span> <span>{{ user.last_name }}</span> </a>
+        </div>
+      </div>
+
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Dashboard
+              </p>
+            </a>
+          </li>
+
+          {% if user.user_type == "1" and user.status and user.is_superuser %}
+
+          {% include "users/ENIC/site.html" %}
+
+          {% elif user.user_type == "2" and user.status %}
+          {% include "users/NIC/site.html" %}
+
+          {% elif user.user_type == "4" and user.status %}
+          {% include "users/NO/site.html" %}
+
+          {% endif %}
+
+
+
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

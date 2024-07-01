@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Representatives
+{% endblock title %}
+
+
+
+{% block content %}
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+              <!-- general form elements -->
+              <div class="card card-primary mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Commissioner Create Form</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+
+
+
+
+                <form method="post" action = "{% url 'add_a_representative' %}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                  <div class="card-body">
+
+                    {% if messages %}
+                    {{message.tags}}  
+                    <div class="alert alert-primary" role = 'alert'>
+                      {% for message in messages %}
+                      {{message}}
+                      {% endfor %}
+            
+                    </div>
+                    {% endif %}
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">First Name</label>
+                      <input required type="text" maxlength="50" name = "first_name" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Last Name</label>
+                        <input required type="text" maxlength="50" name = "last_name" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">User Name</label>
+                        <input required type="text" maxlength="25" name = "username" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">E-mail</label>
+                        <input required type="email"  name="emai" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input required type="password" name="password1" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Confirm Password</label>
+                        <input  required type="password" name="password2" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mobile Number</label>
+                        <input required type="number" min="01300000000" max="01999999999" name="mobile" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Commissoner Image</label>
+                        <input required type="file"  name="image" class="form-control" >
+                    </div>
+
+
+                  </div>
+                  <!-- /.card-body -->
+  
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+
+
+
+
+
+              </div>
+           
+  
+            </div>
+            
+    
+          </div>
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+
+
+
+{% endblock content %}

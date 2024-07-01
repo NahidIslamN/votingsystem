@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+My Profile
+{% endblock title %}
+
+
+{% block content %}
+
+
+<div class="content container-fluid">
+    <div class="page-header">
+       <div class="row">
+          <div class="col">
+             <h3 class="page-title">Profile</h3>
+             <ul class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active">Profile</li>
+             </ul>
+          </div>
+       </div>
+    </div>
+    <div class="row mt-3 ">
+       <div class="col-md-12">
+          <div class="profile-header card p-4">
+             <div class="row align-items-center">
+                <div class="col-auto profile-image">
+                   <a href="#">
+                     {% if user.profile_pic %}
+                     <img class="rounded-circle" width="100px" alt="User Image" src="{{user.profile_pic.url}}">
+                     {% else %}
+                     <img class="rounded-circle" width="100px" src="/static/nn/user.png" alt="User Image">
+                     {% endif %}   
+                   
+                   </a>
+                </div>
+                <div class="col ml-md-n2 profile-user-info">
+                   <h4 class="user-name mb-0"><span>{{user.first_name}}</span> <span>{{user.last_name}}</span></h4>
+                   {% if user.user_type == "1" %}
+                   <h6 class="text-muted">System Administrator</h6>
+                   {% elif user.user_type == "2" %}
+                   <h6 class="text-muted">Election Commissioner</h6>
+
+                   {% elif user.user_type == "4" %}
+                   <h6 class="text-muted">Election Officer</h6>
+                   {% elif user.user_type == "5" %}
+                   <h6 class="text-muted">Voter</h6>
+                   {% else  %}
+                   <h6 class="text-muted">Not A Valid User</h6>
+                   {% endif %}
+                </div>
+                <div class="col-auto profile-btn">
+
+                  {% if user.is_authenticated %}
+                  
+
+                
+                   <a href="/edite_my_profile/" class="btn btn-primary">
+                     Edit Profile
+                   </a>
+                  {% endif %}
+                
+
+                </div>
+             </div>
+          </div>
+
+          <div class="profile-menu mt-5">
+             <ul class="nav nav-tabs nav-tabs-solid">
+                <li class="nav-item">
+                   <a class="nav-link active" data-toggle="tab" href="#per_details_tab">About</a>
+                </li>
+                <li class="nav-item">
+                   <a class="nav-link" data-toggle="tab" href="#password_tab">Password</a>
+                </li>
+             </ul>
+          </div>
+          <div class="tab-content profile-tab-cont mt-4">
+             <div class="tab-pane fade show active" id="per_details_tab">
+                <div class="row">
+                   <div class="col-lg-12">
+                      <div class="card">
+                         <div class="card-body">
+                            <h4 class="card-title d-flex justify-content-between">
+                            <span>Personal Details</span>                                                         
+
+                            </h4>
+
+                            <br>
+
+                            <div class="row">
+                                <div class="col-12 p-1">
+                                    <span class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Name :</span>
+                                    <span>{{user.first_name}}</span> <span>{{user.last_name}}</span>
+                                </div> 
+
+                                <div class="col-12 p-1">
+                                    <span class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Email :</span>
+                                    <span>{{user.email}}</span> 
+                                 </div> 
+                                 
+                                <div class="col-12 p-1">
+                                 <span class="col-sm-3 text-muted text-sm-right mb-0 mb-sm-3">Mobile :</span>
+                                 <span>{{user.mobile}}</span> 
+                                </div> 
+                            </div>
+
+
+        
+                                                        
+
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </div>
+             <div id="password_tab" class="tab-pane fade">
+                <div class="card">
+                  {% if user.is_authenticated %}
+                   <div class="card-body">
+                      <h5 class="card-title">Change Password</h5>
+                      <div class="row">
+                         <div class="col-md-10 col-lg-6">
+
+                           
+
+
+                            <form action = "{% url 'change_my_password' %}" method="post" >
+                              {% csrf_token %}
+
+                               <div class="form-group">
+                                  <label>Old Password</label>
+                                  <input name="Old_pass" type="password" class="form-control">
+                               </div>
+
+                               <div class="form-group">
+                                  <label>New Password</label>
+                                  <input name="New_pass" type="password" class="form-control">
+                               </div>
+
+                               <div class="form-group">
+                                  <label>Confirm Password</label>
+                                  <input name="New_pass2" type="password" class="form-control">
+                               </div>
+
+
+                               <button class="btn btn-primary" type="submit">Save Changes</button>
+                            </form>
+
+
+
+                         </div>
+                      </div>
+                   </div>
+                   {% endif %}
+                </div>
+             </div>
+          </div>
+       </div>
+    </div>
+ </div>
+
+
+{% endblock content %}

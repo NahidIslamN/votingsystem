@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+DeshBoard
+{% endblock title %}
+
+
+
+
+{% block content %}
+
+
+
+{% if user.user_type == "1" and user.status and user.is_superuser %}
+{% include 'users/ENIC/deshboard.html' %}
+
+
+{% elif user.user_type == "2" and user.status %}
+{% include 'users/NIC/deshboard.html' %}
+
+
+{% elif user.user_type == "4" and user.status %}
+{% include 'users/NO/deshboard.html' %}
+
+{% endif %}
+
+
+
+
+{% endblock content %}

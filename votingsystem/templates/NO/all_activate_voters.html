@@ -1,0 +1,63 @@
+{% extends "base2.html" %}
+
+{% block title %}
+All Voters
+{% endblock title %}
+
+
+{% block content %}
+
+
+<div class="row section-title">
+  
+    <h2 class="fs-4">All Voters</b> </h2>
+  
+  
+</div>
+
+
+
+<div class="row">
+    {% if voters %}
+    {% for x in voters %}
+    <div class="col-lg-4 col-md-6">
+
+        <div class="text-white text-center mb-4 votcard shadow-md bg-white p-4 pt-5">
+            <img class="rounded-pill shadow-md p-2" src="{{x.users.profile_pic.url}}" alt="">
+            <h4 class="mt-3 fs-5 mb-1 fw-bold"><span>{{x.users.first_name}}</span> <span>{{x.users.last_name}}</span></h4>
+            <h6 class="mt-3  mb-1 fw-bold"><span>{{x.Identifier}}</span></h6>
+            <h6 class="mt-3  mb-1 fw-bold"><span>{{x.users.email}}</span></h6>
+            
+        
+            <div class="row mt-2">
+
+                <div class="col-6">
+                    <a href="/aprove_or_denied_voter/{{x.users.id}}/3/" class="btn btn-success fw-bolder fs-8 w-100">disable</a>
+                </div>
+
+                <div class="col-6">
+                    <a  class="btn btn-danger fw-bolder px-4 ms-2 fs-8 w-100" href="/aprove_or_denied_voter/{{x.users.id}}/0/">remove</a>
+                </div>
+
+            </div>
+          
+
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <p>not found!</p>
+    {% endif %}
+   
+
+
+
+</div>
+
+
+
+
+
+
+
+{% endblock content %}

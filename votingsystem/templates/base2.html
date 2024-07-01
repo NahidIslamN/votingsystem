@@ -1,0 +1,123 @@
+<!doctype html>
+    <html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>
+            {% block title %}
+
+            {% endblock title %}
+        </title>
+        <link rel="shortcut icon" href="/static/nn/assets/images/fav.png" type="image/x-icon">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet">
+        <link rel="shortcut icon" href="/static/nn/assets/images/fav.jpg">
+        <link rel="stylesheet" href="/static/nn/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+        <link rel="stylesheet" type="text/css" href="/static/nn/assets/css/style.css" />
+
+        {% block extralinks %}
+
+        {% endblock extralinks %}
+    </head>
+    
+    <body>
+
+        <div class="header container-fluid bg-white">
+            <div id="menu-jk" class="nav-col text-white shadow-md mb-3">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-4 pt-2 pb-2 align-items-center"> 
+
+                            <a style="display: block;" class="mt-2" href="/homepage/"><h2> <b><span style="color: gold;">E-Voting</span></b></h2></a>
+                           
+                        </div>
+
+                        <div id="menu" class="col-lg-6 col-md-8  d-lg-block">
+                            <ul class="float-end mul d-inline-block">
+
+
+                                
+                                {% if user.is_authenticated %}
+                                <li class="float-md-start px-4 pe-1 pt-4">
+                                    {% if user.user_type == "1"  %}
+
+                                    {% elif user.user_type == "0" %}
+
+                                    {% else %}
+                                    <a href="/view_all_valid_elections/" class="fw-bold fs-8 text-primary">View Election</a>
+                                    {% endif %}
+                                </li>
+                                <li class="float-md-start px-4 pe-1 py-3">
+                                    <a class="btn fw-bold fs-8 btn-outline-primary px-5" href="/logoutrout/">Logout</a>
+                                </li>
+                             {% else %}
+
+                             
+                            <li class="float-md-start px-4 pe-1 py-3">
+                                <a class="btn fw-bold fs-8 btn-outline-primary px-5" href="/login_page/">Login</a>                                    
+                            </li>
+
+                             <li class="float-md-start px-4 pe-1 py-3">
+                                <a class="btn fw-bold fs-8 btn-outline-primary px-5" href="/regester_as_a_voter/">Register as Voter</a>                                
+                            </li>
+                            {% endif %}
+
+
+                            
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <div class="container-xl big-padding">
+
+            {% block content %}
+
+
+
+
+
+            {% endblock content %}
+           
+
+           
+        </div>
+
+
+
+
+
+
+
+        
+
+        
+
+   
+   
+    </body>
+    <script src="/static/nn/assets/js/jquery-3.2.1.min.js"></script>
+    <script src="/static/nn/assets/js/popper.min.js"></script>
+    <script src="/static/nn/assets/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/nn/assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
+    <script src="/static/nn/assets/plugins/testimonial/js/owl.carousel.min.js"></script>
+    <script src="/static/nn/assets/js/script.js"></script>
+
+    {% block extrascripts %}
+
+
+    {% endblock extrascripts %}
+
+</html>

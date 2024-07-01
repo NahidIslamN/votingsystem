@@ -1,0 +1,76 @@
+{% extends "base2.html" %}
+
+{% block title %}
+Verify OTP
+{% endblock title %}
+
+
+
+
+
+{% block content %}
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+              <!-- general form elements -->
+              <div class="card card-primary mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Sent an OTP to Email to varify your account</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+
+
+
+
+                <form method="post">
+                    {% csrf_token %}
+                  <div class="card-body">
+
+                    {% if messages %}
+                    {{message.tags}}  
+                    <div class="alert alert-primary" role = 'alert'>
+                      {% for message in messages %}
+                      {{message}}
+                      {% endfor %}
+            
+                    </div>
+                    {% endif %}
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Entir OTP Code</label>
+                      <input type="text" maxlength="6" minlength="6" id="email" name="otp" required class="form-control" >
+                    </div>
+
+                   
+
+                  </div>
+                  <!-- /.card-body -->
+  
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                  </div>
+                </form>
+
+
+
+
+
+              </div>
+           
+  
+            </div>
+            
+    
+          </div>
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+
+
+{% endblock content %}

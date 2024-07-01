@@ -1,0 +1,57 @@
+{% extends "base2.html" %}
+
+{% block title %}
+View Election
+{% endblock title %}
+
+
+
+{% block content %}
+
+
+<div class="content container-fluid">
+    <div class="page-header">
+       <div class="row align-items-center">
+          <div class="col">
+             <h3 class="page-title">Upcomming and runing election</h3>           
+          </div>
+
+       </div>
+    </div>
+
+    <div class="row">
+      {% for x in Elections %}
+      <div class="col-lg-6 p-3">
+
+         <div class="card p-3 rounded-4 shadow-md">
+            <h2 style="text-align: center;" >{{x.election_type.election_type}}</h2>
+            <h3 style="text-align: center;" >{{x.Election_Date}}</h3>
+            <h4 style="text-align: center;" >{{x.elections_start_at}} - {{x.election_end}}</h4>
+            <div class="row">
+               <div class="col-4 ">
+                  <a   class="btn btn-sm bg-success text-white p-2 mr-2 w-100" href="/go_to_my_voting_place/{{x.id}}/">Voting Place</a>
+   
+               </div>
+
+               <div class="col-4">
+                  <a class="btn btn-sm bg-danger text-white p-2 mr-2 w-100" href="/apply_for_a_canditates/{{x.id}}/">apply</a>                  
+               </div>
+
+               <div class="col-4">
+                  <a class="btn btn-sm bg-primary text-white p-2 mr-2 w-100" href="/view_election_result/{{x.id}}/">View result</a>                  
+               </div>
+            </div>
+         </div>
+
+      </div>
+
+      {% endfor %}
+    </div>
+
+
+ </div>
+
+
+
+
+{% endblock content %}

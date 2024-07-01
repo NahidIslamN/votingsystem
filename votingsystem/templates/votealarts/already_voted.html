@@ -1,0 +1,50 @@
+
+
+{% block extralinks %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10/dist/sweetalert2.min.css">
+{% endblock extralinks %}
+
+
+
+
+<script>
+    // Define a function to display the alert and redirect
+    function showAlertAndRedirect() {
+        var text = "{{ text }}"; // Get the value of 'text' from Django template
+        alert(text); // Display the alert with the value of 'text'
+        // Redirect to the desired URL
+        window.location.href = "/"; // Replace "http://example.com/" with your desired URL
+    }
+    showAlertAndRedirect()
+</script>
+
+
+<!-- <script>
+    // Define a function to display the alert and redirect
+function showAlertAndRedirect() {
+    var text = "{{text}}"; // Extracting sweetness from the Django template
+    // Display a SweetAlert2 alert
+    Swal.fire({
+        title: 'Sweetness Alert!', // Title for the sweet alert
+        text: text, // Your sweet message goes here
+        icon: 'success', // Icon to accompany the alert (success in this case)
+        confirmButtonText: 'Sweet Redirect' // Text for the confirmation button
+    }).then((result) => {
+        if (result.isConfirmed) { // If the user confirms the alert
+            // Redirect to the desired URL
+            window.location.href = "/"; // Your desired destination URL
+        }
+    });
+}
+
+// Call the function to initiate the sweet alert and redirection process
+showAlertAndRedirect();
+</script> -->
+
+
+{% block extrascripts %}
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+{% endblock extrascripts %}

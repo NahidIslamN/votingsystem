@@ -1,0 +1,65 @@
+{% extends "base2.html" %}
+
+{% block title %}
+Voter Fields
+{% endblock title %}
+
+
+{% block content %}
+
+
+<div class="row section-title">
+    <h2 class="fs-4">{{Commissioners.Zone_Name}} : <b>{{electons.election_type.election_type}}</b> </h2>
+    <p>In the fervor of democracy, candidates rallied, promises soared, and voters' hopes flickered. Amidst debates and door-to-door campaigns, the electorate weighed their options. On Election Day, ballots whispered the fate of a nation. Each mark, a voice; each tally, a verdict. Democracy, the pulse of the people, prevailed.</p>
+</div>
+
+
+
+<div class="row">
+
+    {% for cand in canditate %}
+    <div class="col-lg-4 col-md-6">
+        <div class="text-white text-center mb-4 votcard shadow-md bg-white p-4 pt-5">
+            <img class="rounded-pill shadow-md p-2" src="{{cand.voter_id.users.profile_pic.url}}" alt="">
+            <h4 class="mt-3 fs-5 mb-1 fw-bold"><span>{{cand.voter_id.users.first_name}}</span> <span>{{cand.voter_id.users.last_name}}</span></h4>
+            <h6 class="fs-7">Running to Be: <span class="text-primary fw-bold">{{electons.election_type.designation}}</span></h6>
+            <p class="text-dark mt-3 mb-3 fs-8">{{cand.mul_niti|slice:"0:100"}}</p>
+            <button data-bs-toggle="modal" data-bs-target="#exampleModal-{{forloop.counter}}" class="btn btn-primary fw-bolder fs-8">View Manifesto</button>
+            <a  class="btn btn-danger fw-bolder px-4 ms-2 fs-8" href="/save_voting_data/{{electons.id}}/{{cand.id}}/">Vote</a>
+            <!-- /save_voting_data/<e_id>/<can_id> -->
+        </div>
+    </div>
+    {% endfor %}
+
+
+
+</div>
+
+
+
+
+        <!-- Modal -->
+
+
+        {% for x in canditate %}
+        <div class="modal fade" id="exampleModal-{{forloop.counter}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-6 fw-bold fs-5" id="exampleModalLabel">View Manifesto</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                  <p style="text-align: justify;" >{{x.mul_niti}}</p>
+             
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+
+
+
+
+{% endblock content %}

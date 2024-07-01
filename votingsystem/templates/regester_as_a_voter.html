@@ -1,0 +1,137 @@
+{% extends "base2.html" %}
+
+{% block title %}
+Voter Registrations
+{% endblock title %}
+
+
+
+{% block content %}
+
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+          <div class="row">
+            <!-- left column -->
+            <div class="col-md-12">
+              <!-- general form elements -->
+              <div class="card card-primary mt-4">
+                <div class="card-header">
+                  <h3 class="card-title">Voter Registration From</h3>
+                </div>
+                <!-- /.card-header -->
+                <!-- form start -->
+
+
+
+
+                <form method="post" action = "{% url 'regester_as_a_voter'%}" enctype="multipart/form-data">
+                    {% csrf_token %}
+                  <div class="card-body">
+
+                    {% if messages %}
+                    {{message.tags}}  
+                    <div class="alert alert-primary" role = 'alert'>
+                      {% for message in messages %}
+                      {{message}}
+                      {% endfor %}
+            
+                    </div>
+                    {% endif %}
+
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">First Name</label>
+                      <input required type="text" maxlength="50" name = "first_name" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Last Name</label>
+                        <input required type="text" maxlength="50" name = "last_name" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input required type="email"  name = "username" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Confirm E-mail</label>
+                        <input required type="email"  name="emai" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputPassword1">Password</label>
+                      <input required type="password" name="password1" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Confirm Password</label>
+                        <input  required type="password" name="password2" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mobile Number</label>
+                        <input required type="number" min="01300000000" max="01999999999" name="mobile" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">NID Number</label>
+                        <input minlength="10" maxlength="10"  required type="text" name="Identifier" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Father Name</label>
+                        <input  required type="text" name="father_name" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Mother Name</label>
+                        <input  required type="text" name="mother_name" class="form-control" >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Commissioner ID</label>
+                        <select required name="commission_id" class="form-select" aria-label="Default select example">
+                            <option value="">Select Your Commission</option>
+                            {% for x in commiss %}
+                            <option value="{{x.id}}">{{x.comitionar_ID}}</option>
+                            {% endfor %}
+                          </select>
+                    </div>
+
+
+
+
+                    <div class="form-group mt-3">
+                        <label for="exampleInputPassword1">Image</label>
+                        <input required type="file"  name="image" class="form-control" >
+                    </div>
+
+
+                  </div>
+                  <!-- /.card-body -->
+  
+                  <div class="card-footer">
+                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                  </div>
+                </form>
+
+
+
+
+
+              </div>
+           
+  
+            </div>
+            
+    
+          </div>
+          <!-- /.row -->
+        </div><!-- /.container-fluid -->
+      </section>
+      <!-- /.content -->
+
+
+{% endblock content %}
